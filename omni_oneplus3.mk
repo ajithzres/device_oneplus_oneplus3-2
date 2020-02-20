@@ -21,9 +21,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oneplus/oneplus3/device.mk)
 
 # Inherit some common Xtended stuff.
-$(call inherit-product, $(CUSTOM_VENDOR_DIR)/config/common_full_phone.mk)
+#$(call inherit-product, $(CUSTOM_VENDOR_DIR)/config/common_full_phone.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+# Get the prebuilt list of APNs
+$(call inherit-product, vendor/omni/config/gsm.mk)
+# Inherit from the common Open Source product configuration
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+PRODUCT_NAME := omni_oneplus3
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/omni/config/common.mk)
+ALLOW_MISSING_DEPENDENCIES := true
+#PRODUCT_SHIPPING_API_LEVEL := 27
+#PRODUCT_SHIPPING_API_LEVEL := 27
+#PRODUCT_PACKAGES += \
+android.hardware.biometrics.fingerprint@2.1-service
 
-PRODUCT_NAME := aosp_oneplus3
 
 # Vendor security patch level
 VENDOR_SECURITY_PATCH := 2019-10-01
